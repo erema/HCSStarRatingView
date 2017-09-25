@@ -24,6 +24,15 @@
 
 typedef BOOL(^HCSStarRatingViewShouldBeginGestureRecognizerBlock)(UIGestureRecognizer *gestureRecognizer);
 
+@class HCSStarRatingView;
+
+@protocol HCSStarRatingViewDelegate <NSObject>
+
+- (void)didEndTracking:(HCSStarRatingView *) view;
+- (void)didCancelTracking:(HCSStarRatingView *) view;
+
+@end
+
 IB_DESIGNABLE
 @interface HCSStarRatingView : UIControl
 @property (nonatomic) IBInspectable NSUInteger maximumValue;
@@ -33,6 +42,7 @@ IB_DESIGNABLE
 @property (nonatomic) IBInspectable BOOL allowsHalfStars;
 @property (nonatomic) IBInspectable BOOL accurateHalfStars;
 @property (nonatomic) IBInspectable BOOL continuous;
+@property (nonatomic, weak) id <HCSStarRatingViewDelegate> delegate;
 
 @property (nonatomic) BOOL shouldBecomeFirstResponder;
 

@@ -378,12 +378,20 @@
     if (!_continuous) {
         [self sendActionsForControlEvents:UIControlEventValueChanged];
     }
+    
+    if ([self.delegate respondsToSelector:@selector(didEndTracking:)]) {
+        [self.delegate didEndTracking:self];
+    }
 }
 
 - (void)cancelTrackingWithEvent:(UIEvent *)event {
     [super cancelTrackingWithEvent:event];
     if (_shouldBecomeFirstResponder && [self isFirstResponder]) {
         [self resignFirstResponder];
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(didCancelTracking:)]) {
+        [self.delegate didCancelTracking:self];
     }
 }
 
