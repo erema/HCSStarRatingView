@@ -20,7 +20,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-@import UIKit;
+#if __has_feature(modules)
+    @import UIKit;
+#else
+    #import <UIKit/UIKit.h>
+#endif
 
 typedef BOOL(^HCSStarRatingViewShouldBeginGestureRecognizerBlock)(UIGestureRecognizer *gestureRecognizer);
 
